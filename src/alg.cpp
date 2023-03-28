@@ -4,10 +4,10 @@
 #include "tstack.h"
 template<typename T, int size>
 class TStack {
-private:
+ private:
     T * node;
     int head;
-public:
+ public:
     TStack() {
         node = new T[size];
         head = -1;
@@ -68,12 +68,10 @@ std::string infx2pstfx(std::string inf) {
         char op = inf[i];
         if (prior == -1) {
             vixod.push(inf[i]);
-        }
-        else {
+        } else {
             if (prior > getPrior(charstack.peek()) || prior == 0 || charstack.isEmpty()) {
                 charstack.push(op);
-            }
-            else if (op == ')') {
+            } else if (op == ')') {
                 while (prior <= getPrior(charstack.peek())) {
                     if (charstack.peek() != '(' && charstack.peek() != ')') {
                         vixod.push(charstack.peek());
@@ -81,8 +79,7 @@ std::string infx2pstfx(std::string inf) {
                     charstack.pop();
                 }
                 charstack.pop();
-            }
-            else {
+            } else {
                 while (prior <= getPrior(charstack.peek())) {
                     if (charstack.peek() != '(' && charstack.peek() != ')') {
                         vixod.push(charstack.peek());
