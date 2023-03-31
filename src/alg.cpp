@@ -93,6 +93,7 @@ std::string infx2pstfx(std::string inf) {
         exit.push_back(ex);
         exit.push_back(' ');
     }
+    exit.pop_back();
     return exit;
 }
 
