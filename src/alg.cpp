@@ -117,6 +117,7 @@ int operat(char oper) {
     default:
         break;
     }
+    return 0;
 }
 
 int eval(std::string pref) {
