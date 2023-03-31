@@ -2,30 +2,6 @@
 #include <string>
 #include <map>
 #include "tstack.h"
-template<typename T, int size>
-class TStack {
- private:
-    T * node;
-    int head;
- public:
-    TStack() {
-        node = new T[size];
-        head = -1;
-    }
-    bool isEmpty() {
-        return head == -1;
-    }
-    void push(T a) {
-        node[++head] = a;
-    }
-    T peek() {
-        return node[head];
-    }
-    T pop() {
-        return node[head--];
-    }
-};
-
 TStack <char, 100> charstack;
 TStack <char, 100> vixod;
 TStack <int, 100> intstack;
@@ -69,7 +45,9 @@ std::string infx2pstfx(std::string inf) {
         if (prior == -1) {
             vixod.push(inf[i]);
         } else {
-            if (prior > getPrior(charstack.peek()) || prior == 0 || charstack.isEmpty()) {
+            if (prior > getPrior(charstack.peek()) || charstack.isEmpty()) {
+                charstack.push(op);
+            } else if (prior == 0) {
                 charstack.push(op);
             } else if (op == ')') {
                 while (prior <= getPrior(charstack.peek())) {
